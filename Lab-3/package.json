@@ -2,7 +2,7 @@
   "name": "lab-3",
   "version": "1.0.0",
   "description": "hyper text transfer protocol\r html - hyper text markup language\r css - cascade style sheet\r npm - note package manager",
-  "main": "App.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "type": "module",
+  
   "devDependencies": {
     "nodemon": "^3.1.14"
   }
