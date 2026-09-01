@@ -1,11 +1,11 @@
 {
-  "name": "lab-3",
+  "name": "Lab-3",
   "version": "1.0.0",
   "description": "hyper text transfer protocol\r html - hyper text markup language\r css - cascade style sheet\r npm - note package manager",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon prg3.js"
+    "dev": "nodemon prg.10js"
   },
   "keywords": [],
   "author": "",

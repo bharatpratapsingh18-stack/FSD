@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTag - Keep Track of Your Things</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5f5f7;
+            color: #1d1d1f;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8%;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #0071e3;
+        }
+
+        .buy-btn {
+            background: #0071e3;
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 25px;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 10%;
+            overflow: hidden;
+        }
+
+        .hero-text {
+            width: 50%;
+        }
+
+        .hero-text h1 {
+            font-size: 72px;
+            line-height: 1;
+            margin-bottom: 25px;
+            letter-spacing: -4px;
+        }
+
+        .hero-text h1 span {
+            color: #0071e3;
+        }
+
+        .hero-text p {
+            font-size: 22px;
+            line-height: 1.5;
+            color: #666;
+            max-width: 500px;
+            margin-bottom: 35px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #0071e3;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            background: #005bb5;
+        }
+
+        /* AIRTAG */
+        .product {
+            width: 390px;
+            height: 390px;
+            border-radius: 50%;
+            background: #e5e5e7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+            position: relative;
+        }
+
+        .airtag {
+            width: 245px;
+            height: 245px;
+            background: linear-gradient(145deg, #ffffff, #dedee2);
+            border-radius: 50%;
+            box-shadow:
+                10px 15px 30px rgba(0,0,0,0.2),
+                inset -10px -10px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .airtag::after {
+            content: "";
+            font-size: 75px;
+            font-weight: bold;
+            color: #111;
+        }
+
+        .ring {
+            position: absolute;
+            width: 290px;
+            height: 290px;
+            border: 2px solid rgba(0,113,227,0.2);
+            border-radius: 50%;
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* FEATURES */
+        .features {
+            background: white;
+            padding: 90px 10%;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .features > p {
+            color: #777;
+            font-size: 19px;
+            margin-bottom: 55px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: #f5f5f7;
+            padding: 40px 25px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* HOW IT WORKS */
+        .how {
+            padding: 90px 10%;
+            text-align: center;
+        }
+
+        .how h2 {
+            font-size: 48px;
+            margin-bottom: 50px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+        }
+
+        .number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #0071e3;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            font-weight: bold;
+            margin: auto auto 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* PRICE */
+        .price-section {
+            background: #111;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .price-section h2 {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 50px;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+
+        .price span {
+            font-size: 18px;
+            color: #aaa;
+        }
+
+        .price-btn {
+            display: inline-block;
+            background: white;
+            color: #111;
+            text-decoration: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #000;
+            color: #888;
+            padding: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 800px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 70px;
+            }
+
+            .hero-text {
+                width: 100%;
+            }
+
+            .hero-text h1 {
+                font-size: 55px;
+            }
+
+            .product {
+                width: 300px;
+                height: 300px;
+            }
+
+            .airtag {
+                width: 190px;
+                height: 190px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">AirTag</div>
+
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#buy">Buy</a></li>
+        </ul>
+
+        <a href="#buy" class="buy-btn">Buy</a>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-text">
+            <h1>Lose less.<br><span>Find more.</span></h1>
+
+            <p>
+                AirTag is a simple way to keep track of your
+                personal items. Attach one to your keys,
+                backpack, wallet or anything you don't want to lose.
+            </p>
+
+            <a href="#buy" class="hero-btn">Buy AirTag</a>
+        </div>
+
+        <div class="product">
+            <div class="ring"></div>
+
+            <div class="airtag"></div>
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+
+        <h2>Small device. Big help.</h2>
+
+        <p>
+            Everything you need to keep track of your everyday essentials.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="card">
+                <div class="icon">📍</div>
+                <h3>Easy to Find</h3>
+                <p>
+                    See where your item is located and get directions
+                    to help find it.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔊</div>
+                <h3>Play a Sound</h3>
+                <p>
+                    Make your AirTag play a sound when your item
+                    is hiding nearby.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔋</div>
+                <h3>Long Battery Life</h3>
+                <p>
+                    Designed to keep going for a long time with
+                    a replaceable battery.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section class="how" id="how">
+
+        <h2>How it works</h2>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="number">1</div>
+                <h3>Attach</h3>
+                <p>
+                    Attach AirTag to the item you want to keep track of.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="number">2</div>
+                <h3>Connect</h3>
+                <p>
+                    Connect it to your device and give your AirTag a name.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="number">3</div>
+                <h3>Find</h3>
+                <p>
+                    Use your device to locate your missing item.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRICE -->
+    <section class="price-section" id="buy">
+
+        <h2>AirTag</h2>
+
+        <p>Simple. Powerful. Easy to carry.</p>
+
+        <div class="price">
+            ₹3,490 <span> / 1 pack</span>
+        </div>
+
+        <a href="#" class="price-btn">Buy Now</a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 AirTag Demo Website. This is a student/demo project.
+    </footer>
+
+</body>
+</html>
