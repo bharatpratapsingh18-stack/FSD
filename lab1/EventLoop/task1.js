@@ -12,7 +12,7 @@ const f2 = () => {
 };
 
 const f3 = () => {
-  console.log("f3 starts");
+  console.log("f3 starts"); 
   console.log("f3 running");
   console.log("f3 end");
 };    
